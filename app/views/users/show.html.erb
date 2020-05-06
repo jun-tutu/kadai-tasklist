@@ -1,9 +1,1 @@
-<h1><%= @user.name %>のページ</h1>
-<ul>
-  <% @user.tasks.each do |task| %>
-    <li><%=  %></li>
-  <% end %>
-</ul>
-
-<div><%= link_to "新規タスクの作成ページ", new_task_path %></div>
-<div><%= link_to 'Logout', logout_path, method: :delete %></div>
+<%= render 'layouts/task_list', user: current_user %>
