@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show]
-  
+
   def new
     @user = User.new
   end
@@ -21,7 +21,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    unless current_user.id == @user.id
+      flash[:danger] = '他のユーザーです。'
+      redirect_to users_path
+    end
   end
   
   private
