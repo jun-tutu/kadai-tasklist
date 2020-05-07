@@ -1,1 +1,11 @@
-<%= render 'layouts/task_list', user: current_user %>
+<h1> <%= current_user.name %>のタスク一覧</h1>
+
+<div>あなたのタスクは全部で<%= current_user.tasks.count %>件です。</div>
+<ul>
+  <% current_user.tasks.each do |task| %>
+    <li><%= link_to task.id, task %>:<%= task.content %> &gt; <%= task.status %></li>
+  <% end %>
+</ul>
+  
+<div><%= link_to "新規タスクの作成ページ", new_task_path %></div>
+<div><%= link_to "Logout", logout_path, method: :delete %></div>
